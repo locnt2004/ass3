@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import HomePage from "./component/HomePage";
+import Footer from "./component/Footer";
+import NavBar from "./component/NavBar";
+import ShopPage from "./component/ShopPage";
+import Detail from "./component/Detail";
+import SignInPage from "./component/SignInPage";
+import CartPage from "./component/CartPage";
+import { useSelector } from "react-redux";
+import CheckoutPage from "./component/CheckoutPage";
+import LiveChat from "./component/LiveChat";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/shop" element={<ShopPage />} />
+        <Route path="/shop/:type" element={<ShopPage />} />
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/sign-in" element={<SignInPage />} />
+        <Route path="/card" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+
+        <Route path="*" element={<HomePage />} />
+      </Routes>
+      <Footer />
+      <LiveChat />
+    </BrowserRouter>
   );
 }
 
